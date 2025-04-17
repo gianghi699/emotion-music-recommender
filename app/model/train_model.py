@@ -60,9 +60,9 @@ def train_and_save():
     model = build_model()
     model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=15, batch_size=64)
 
-    os.makedirs("app/emotion_model", exist_ok=True)
-    model.save("app/emotion_model/emotion_cnn.h5")
-    print("Model saved to app/emotion_model/emotion_cnn.h5")
+    os.makedirs("app/model", exist_ok=True)
+    model.save("app/model/emotion_cnn.h5")
+    print("Model saved to app/model/emotion_cnn.h5")
 
 if __name__ == "__main__":
     train_and_save()

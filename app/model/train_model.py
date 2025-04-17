@@ -9,21 +9,21 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropou
 from sklearn.model_selection import train_test_split
 import gdown
 
-# STEP 1: Download fer2013.csv if not already available
+# Download fer2013.csv if not already available
 def download_fer2013():
     os.makedirs('data', exist_ok=True)
     file_path = 'data/fer2013.csv'
 
     if not os.path.exists(file_path):
         print("fer2013.csv not found. Downloading from Google Drive...")
-        file_id = '1BJLbmeVE1IgSZMGYbcAZ0rOi1kdnyRyx'  # Replace with your actual ID
+        file_id = '1BJLbmeVE1IgSZMGYbcAZ0rOi1kdnyRyx'  
         url = f'https://drive.google.com/uc?id={file_id}'
         gdown.download(url, file_path, quiet=False)
         print("Download complete.")
     else:
         print("fer2013.csv already exists.")
 
-# STEP 2: Load and preprocess data
+# Load and preprocess data
 def load_and_preprocess():
     df = pd.read_csv('data/fer2013.csv')
 
@@ -37,7 +37,7 @@ def load_and_preprocess():
 
     return train_test_split(X, y, test_size=0.2, random_state=42)
 
-# STEP 3: Build CNN model
+# Build CNN model
 def build_model():
     model = Sequential([
         Conv2D(32, (3,3), activation='relu', input_shape=(48,48,1)),
@@ -52,7 +52,7 @@ def build_model():
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-# STEP 4: Train and save model
+# Train and save model
 def train_and_save():
     download_fer2013()
     X_train, X_test, y_train, y_test = load_and_preprocess()
